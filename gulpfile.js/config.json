@@ -1,0 +1,48 @@
+{
+  "clean": [
+    "dist/**/.DS_Store"
+  ],
+  "scripts": {
+    "src": [
+      "src/*.js",
+      "src/fn/*.js"
+    ],
+    "require": {
+      "baseUrl": "src/",
+      "name": "almond",
+      "include": "meTools",
+      "out": "dist/me-tools",
+      "wrap": {
+        "startFile": "src/wrap/start.frag",
+        "endFile": "src/wrap/end.frag"
+      },
+      "paths": {
+        "almond": "../node_modules/almond/almond",
+        "meTools": "index"
+      }
+    },
+    "dest": "dist",
+    "banner": ["/**",
+      " * @license <%= pkg.name %> <%= pkg.version %> Copyright (c) <%= pkg.author %>",
+      " * Available via the <%= pkg.license %> license.",
+      " * see: <%= pkg.homepage %> for details",
+      " */",
+      ""]
+  },
+  "build": [
+    "clean",
+    "scripts-require",
+    "scripts-require-min"
+  ],
+  "watch": [
+    {
+      "files": [
+        "src/*.js",
+        "src/fn/*.js"
+      ],
+      "tasks": [
+        "scripts-require-min"
+      ]
+    }
+  ]
+}

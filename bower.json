@@ -1,0 +1,22 @@
+{
+  "name": "me-tools",
+  "version": "0.0.1",
+  "homepage": "https://github.com/meibegger/me-tools",
+  "authors": [
+    "Mandana Eibegger <scripts@schoener.at>"
+  ],
+  "description": "A collection of utility functions.",
+  "main": "src/index.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "javascript",
+    "utility functions"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meibegger/me-tools.git"
+  }
+}
