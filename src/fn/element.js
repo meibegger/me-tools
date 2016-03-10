@@ -54,6 +54,8 @@ define(function () {
   /**
    * Get all ancestors of an element, possibly matching a selector, up to an optional container.
    *
+   * Note: this function uses matches(selector), so you need to include a polyfill for all IEs!
+   *
    * getAncestors(element [, selector] [, container] [, single])
    *
    * @param element DOM-Element;
@@ -87,8 +89,8 @@ define(function () {
 
     var parents = [],
       getAncestors = function (element) {
-        var parent = element.parentElement();
-        if (!selector || parent.matchesSelector(selector)) {
+        var parent = element.parentElement;
+        if (!selector || parent.matches(selector)) {
           if (single) {
             return parent;
           } else {
