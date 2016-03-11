@@ -478,7 +478,7 @@ define('fn/variable',[],function () {
           : val);
       }
 
-    } else if (typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
+    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
       copy = {};
       for (var key in vals) {
         val = vals[key];
@@ -698,7 +698,7 @@ define('fn/element',[],function () {
   };
 });
 
-define('fn/event',[],function () {
+define('fn/event',['./variable'],function (variable) {
 
   /*
    ---------------
@@ -762,13 +762,12 @@ define('fn/event',[],function () {
    * @param capture boolean; optional; if not set, captured & not-captured events are removed, if true only captured events are removed, if false only not-captured events are removed
    */
   function unregisterEvent(scope, target, type, fn, capture) {
-
     if (!scope.registeredEvents) {
       return;
     }
     var registeredEvents = scope.registeredEvents;
 
-    if (typeof(type) === 'undefined' || !type) {
+    if (!type) {
       for (type in registeredEvents) {
         unregisterEvent(scope, target, type, fn, capture);
       }
@@ -780,9 +779,11 @@ define('fn/event',[],function () {
     }
     var typeListeners = registeredEvents[type];
 
-    if (typeof(target) === 'undefined' || !target) {
-      for (var i in typeListeners) {
-        unregisterEvent(scope, typeListeners[i].tg, type, fn, capture);
+    if (!target) {
+      var cTypeListeners = variable.copyValues(typeListeners);
+      while (cTypeListeners.length) {
+        var typeListener = cTypeListeners.shift();
+        unregisterEvent(scope, typeListener.tg, type, fn, capture);
       }
       return;
     }
@@ -804,11 +805,9 @@ define('fn/event',[],function () {
       var fnDef = fns[k];
       if ((typeof(fn) === 'undefined' || !fn || fn === fnDef[0]) &&
         (typeof(capture) === 'undefined' || capture === fnDef[1])) {
-
         fns.splice(k, 1);
         target.removeEventListener(type, fnDef[0], fnDef[1]);
         k--;
-
       }
     }
 

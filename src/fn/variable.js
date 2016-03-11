@@ -29,7 +29,7 @@ define(function () {
           : val);
       }
 
-    } else if (typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
+    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
       copy = {};
       for (var key in vals) {
         val = vals[key];

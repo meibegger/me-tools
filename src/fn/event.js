@@ -1,4 +1,4 @@
-define(function () {
+define(['./variable'],function (variable) {
 
   /*
    ---------------
@@ -62,13 +62,12 @@ define(function () {
    * @param capture boolean; optional; if not set, captured & not-captured events are removed, if true only captured events are removed, if false only not-captured events are removed
    */
   function unregisterEvent(scope, target, type, fn, capture) {
-
     if (!scope.registeredEvents) {
       return;
     }
     var registeredEvents = scope.registeredEvents;
 
-    if (typeof(type) === 'undefined' || !type) {
+    if (!type) {
       for (type in registeredEvents) {
         unregisterEvent(scope, target, type, fn, capture);
       }
@@ -80,9 +79,11 @@ define(function () {
     }
     var typeListeners = registeredEvents[type];
 
-    if (typeof(target) === 'undefined' || !target) {
-      for (var i in typeListeners) {
-        unregisterEvent(scope, typeListeners[i].tg, type, fn, capture);
+    if (!target) {
+      var cTypeListeners = variable.copyValues(typeListeners);
+      while (cTypeListeners.length) {
+        var typeListener = cTypeListeners.shift();
+        unregisterEvent(scope, typeListener.tg, type, fn, capture);
       }
       return;
     }
@@ -104,11 +105,9 @@ define(function () {
       var fnDef = fns[k];
       if ((typeof(fn) === 'undefined' || !fn || fn === fnDef[0]) &&
         (typeof(capture) === 'undefined' || capture === fnDef[1])) {
-
         fns.splice(k, 1);
         target.removeEventListener(type, fnDef[0], fnDef[1]);
         k--;
-
       }
     }
 
