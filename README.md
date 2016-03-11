@@ -181,4 +181,4 @@ $ bower install me-tools
 ```
 
 ## License ##
-meTools is licenses under the [MIT licence](https://opensource.org/licenses/MIT).
+meTools is licensed under the [MIT licence](https://opensource.org/licenses/MIT).
