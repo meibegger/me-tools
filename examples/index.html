@@ -2,13 +2,30 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title></title>
-
-
+  <title>meTools Examples</title>
 </head>
 <body>
 
-<a id="foo" href="#">FOO</a>
+<h1 id="headline">meTools Examples</h1>
+
+<h2>Automatic Examples</h2>
+<p>See the console for outputs ...</p>
+<p>(Move the mouse to see throttle/debounce effect in the console)</p>
+
+<h2>Interactive Examples</h2>
+
+<h3>(un)register events</h3>
+<p>(See the console for outputs ...)</p>
+<p id="target1">I am "target 1" and listen to a general mouseDown, a specific mouseDown & a general mouseUp event.</p>
+<p id="target2">I am "target 2" and also listen to a general mouseDown, a specific mouseDown & a general mouseUp event.</p>
+
+<button type="button" id="registerEvents">register events</button>
+<button type="button" id="unregisterAll">unregister all events</button>
+<button type="button" id="unregisterTarget1">unregister all events on "target 1"</button>
+<button type="button" id="unregisterSpecific1">unregister a specific mouseDown event</button>
+<button type="button" id="unregisterGeneral">unregister the general mouseDown event</button>
+<button type="button" id="unregisterGeneral1">unregister the general mouseDown event on "target 1"</button>
+<button type="button" id="unregisterMouseDown">unregister all mouseDown events</button>
 
 <script type="text/javascript" src="../dist/me-tools.min.js"></script>
 <script type="text/javascript" src="examples.js"></script>
