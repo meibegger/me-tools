@@ -64,7 +64,7 @@ define(function () {
         if (Array.isArray(option2) || typeof(option2) !== 'object' || typeof(option1) !== 'object') {
           result[key1] = copyValues(option2);
         } else {
-          result[key1] = mergeobject(option1, option2);
+          result[key1] = mergeObjects(option1, option2);
         }
       } else {
         result[key1] = copyValues(option1);
