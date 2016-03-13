@@ -108,6 +108,31 @@ meTools.isParent(parent, child)
 * @param child DOM-element
 * @returns {boolean}
 
+---
+
+Add 1 or more values to an attribute.
+
+```javascript
+addAttributeValues(element, attributeName, values)
+```
+
+@param element DOM-element
+@param attributeName string
+@param values mixed; string or array of strings
+
+---
+
+Remove one or more values from an attribute.
+
+```javascript
+removeAttributeValues(element, attributeName, values)
+```
+
+@param element DOM-element
+@param attributeName string
+@param values mixed; string or array of strings
+
+
 #### Event handling ####
 
 Add an event-listener and register it to an instance.

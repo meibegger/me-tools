@@ -1,5 +1,5 @@
 /**
- * @license me-tools 1.0.0 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 1.0.1 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
@@ -684,6 +684,60 @@ define('fn/element',[],function () {
     return false;
   }
 
+  /**
+   * Add 1 or more values to an attribute.
+   *
+   * addAttributeValues(element, attributeName, values)
+   *
+   * @param element DOM-element
+   * @param attributeName string
+   * @param values mixed; string or array of strings
+   */
+  function addAttributeValues(element, attributeName, values) {
+    values = Array.isArray(values) ? values : [values];
+
+    var
+      attributeVal = element.getAttribute(attributeName),
+      currentVals = attributeVal ? attributeVal.split(' ') : [];
+
+    for (var i = 0; i < values.length; i++) {
+      var value = values[i];
+      if (currentVals.indexOf(value) === -1) {
+        currentVals.push(value);
+      }
+    }
+    element.setAttribute(attributeName, currentVals.join(' '));
+  }
+
+  /**
+   * Remove one or more values from an attribute.
+   *
+   * removeAttributeValues(element, attributeName, values)
+   *
+   * @param element DOM-element
+   * @param attributeName string
+   * @param values mixed; string or array of strings
+   */
+  function removeAttributeValues(element, attributeName, values) {
+    var attributeVal = element.getAttribute(attributeName);
+    if (attributeVal) {
+      var
+        expStart = '((^| )',
+        expEnd = '(?= |$))';
+
+      attributeVal = attributeVal.replace(new RegExp(Array.isArray(values) ?
+        expStart + values.join(expEnd + '|' + expStart) + expEnd :
+        expStart + values + expEnd, 'g'),
+        '');
+
+      if (attributeVal) {
+        element.setAttribute(attributeName, attributeVal);
+      } else {
+        element.removeAttribute(attributeName);
+      }
+    }
+  }
+
   /*
    ---------------
    api
@@ -694,7 +748,9 @@ define('fn/element',[],function () {
     getElementById: getElementById,
     getId: getId,
     getAncestors: getAncestors,
-    isParent: isParent
+    isParent: isParent,
+    addAttributeValues: addAttributeValues,
+    removeAttributeValues: removeAttributeValues
   };
 });
 

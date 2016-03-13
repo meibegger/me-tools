@@ -125,4 +125,20 @@
     console.log("END MOUSE MOVE")
   }));
 
+  // addAttributeValues
+  var element = document.getElementById('attributeElement');
+  document.getElementById('addAttributeValue').addEventListener('click',function () {
+    meTools.addAttributeValues(element,'data-some-attribute','SOME-VAL1');
+  });
+  document.getElementById('addAttributeValues').addEventListener('click',function () {
+    meTools.addAttributeValues(element,'data-some-attribute',['SOME-VAL2','SOME-VAL3']);
+  });
+  document.getElementById('removeAttributeValue').addEventListener('click',function () {
+    meTools.removeAttributeValues(element,'data-some-attribute','SOME-VAL1');
+  });
+  document.getElementById('removeAttributeValues').addEventListener('click',function () {
+    meTools.removeAttributeValues(element,'data-some-attribute',['SOME-VAL2','SOME-VAL3']);
+  });
+
+
 }));
