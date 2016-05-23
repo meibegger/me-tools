@@ -628,7 +628,7 @@ define('fn/element',[],function () {
       argSelector = false,
       argContainer = false,
       argSingle = false;
-    for (var i = 0; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
       switch (typeof(arguments[i])) {
         case 'string':
           argSelector = arguments[i];
@@ -658,7 +658,7 @@ define('fn/element',[],function () {
         if (parent === container) {
           return single ? false : parents;
         }
-        getAncestors(parent);
+        return getAncestors(parent);
       }
       ;
     return getAncestors(element);
