@@ -62,7 +62,7 @@ define(function () {
    * @param selector String; optional; selector to match the parents against
    * @param container DOM-Element; optional; max parent to check; default is body
    * @param single Boolean; optional; return only the next matching ancestor
-   * @return array
+   * @return mixed; array or false/element if single===true
    */
   function getAncestors(element, selector, container, single) {
     // prepare arguments
