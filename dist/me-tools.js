@@ -1,5 +1,5 @@
 /**
- * @license me-tools 1.0.1 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 1.0.2 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
@@ -620,7 +620,7 @@ define('fn/element',[],function () {
    * @param selector String; optional; selector to match the parents against
    * @param container DOM-Element; optional; max parent to check; default is body
    * @param single Boolean; optional; return only the next matching ancestor
-   * @return array
+   * @return mixed; array or false/element if single===true
    */
   function getAncestors(element, selector, container, single) {
     // prepare arguments
