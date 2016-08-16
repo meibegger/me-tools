@@ -22,6 +22,7 @@ gulp.task('scripts-concat', ['scripts-check'], function (taskReady) {
     .pipe(rename(config.scripts.concat.dest + '.min.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
+    .pipe(footer('\n'+banner.join('\n'), { pkg : pkg } ))
     .pipe(gulp.dest(config.scripts.dest));
 });
 

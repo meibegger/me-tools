@@ -1,5 +1,5 @@
 /**
- * @license me-tools 1.0.2 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 2.0.0 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
