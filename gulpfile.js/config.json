@@ -4,22 +4,17 @@
   ],
   "scripts": {
     "src": [
-      "src/*.js",
-      "src/fn/*.js"
+      "src/fn/*.js",
+      "src/*.js"
     ],
-    "require": {
-      "baseUrl": "src/",
-      "name": "almond",
-      "include": "meTools",
-      "out": "dist/me-tools",
-      "wrap": {
-        "startFile": "src/wrap/start.frag",
-        "endFile": "src/wrap/end.frag"
-      },
-      "paths": {
-        "almond": "../node_modules/almond/almond",
-        "meTools": "index"
-      }
+    "concat": {
+      "src": [
+        "src/fn/variable.js",
+        "src/fn/element.js",
+        "src/fn/event.js",
+        "src/index.js"
+      ],
+      "dest": "me-tools"
     },
     "dest": "dist",
     "banner": ["/**",
@@ -31,17 +26,16 @@
   },
   "build": [
     "clean",
-    "scripts-require",
-    "scripts-require-min"
+    "scripts-concat"
   ],
   "watch": [
     {
       "files": [
-        "src/*.js",
-        "src/fn/*.js"
+        "src/fn/*.js",
+        "src/*.js"
       ],
       "tasks": [
-        "scripts-require-min"
+        "scripts-concat"
       ]
     }
   ]

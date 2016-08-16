@@ -1,4 +1,21 @@
-define(['./variable'],function (variable) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('meTools.fn.event', [
+      'meTools.fn.variable'
+    ], factory);
+  } else if(typeof exports === 'object') {
+    var fnVariable = require('./variable');
+    if (typeof module === 'object') {
+      module.exports = factory(fnVariable);
+    } else {
+      exports['meTools.fn.event'] = factory(fnVariable);
+    }
+  } else {
+    root.meTools = root.meTools || {};
+    root.meTools.fn = root.meTools.fn || {};
+    root.meTools.fn.event = factory(root.meTools.fn.variable);
+  }
+}(this, function (fnVariable) {
 
   /*
    ---------------
@@ -80,7 +97,7 @@ define(['./variable'],function (variable) {
     var typeListeners = registeredEvents[type];
 
     if (!target) {
-      var cTypeListeners = variable.copyValues(typeListeners);
+      var cTypeListeners = fnVariable.copyValues(typeListeners);
       while (cTypeListeners.length) {
         var typeListener = cTypeListeners.shift();
         unregisterEvent(scope, typeListener.tg, type, fn, capture);
@@ -220,4 +237,5 @@ define(['./variable'],function (variable) {
     throttle: throttle,
     debounce: debounce
   };
-});
+
+}));

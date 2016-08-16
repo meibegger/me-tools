@@ -6,7 +6,7 @@
     factory(meTools);
   }
 }(this, function (meTools) {
-
+console.log(meTools);
   // copyValues
   var
     val = {

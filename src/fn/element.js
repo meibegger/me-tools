@@ -1,4 +1,19 @@
-define(function () {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('meTools.fn.element', [
+    ], factory);
+  } else if(typeof exports === 'object') {
+    if (typeof module === 'object') {
+      module.exports = factory();
+    } else {
+      exports['meTools.fn.element'] = factory();
+    }
+  } else {
+    root.meTools = root.meTools || {};
+    root.meTools.fn = root.meTools.fn || {};
+    root.meTools.fn.element = factory();
+  }
+}(this, function () {
 
   /*
    ---------------
@@ -194,4 +209,5 @@ define(function () {
     addAttributeValues: addAttributeValues,
     removeAttributeValues: removeAttributeValues
   };
-});
+
+}));
