@@ -4,26 +4,22 @@ A collection of utility functions.
 
 ## Usage ##
 
-### 1. Include the JavaScript ###
-#### Precompiled & minified versions ####
-Include `me-tools.min.js` and `me-tools.min.css` included in the `dist` folder in your HTML page.
+### Files ###
+You can find the precompiled versions in the `dist` folder.
 
-#### Source versions ####
 You can find the original JavaScript files in the `src` folder of this package.
 
-#### AMD ####
+### AMD ###
 meLockView has AMD support. This allows it to be lazy-loaded with an AMD loader, such as RequireJS.
 
-### 2. Define your view ###
-Wrap your main page content in a container and set the attribute `data-me-view=""` on this element.
+### Node style require ###
+meLockView has Module support:
 
-```html
-<div data-me-view="">
-  YOUR CONTENT GOES HERE
-</div>
+```javascript
+var meTools = require('me-tools');
 ```
 
-### 2. meTools Functions ###
+## meTools Functions ###
 #### Variable functions ####
 
 Create a copy of a variable.
