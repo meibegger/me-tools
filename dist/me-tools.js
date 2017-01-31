@@ -1,5 +1,5 @@
 /**
- * @license me-tools 2.0.0 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 2.0.1 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
@@ -49,7 +49,7 @@
           : val);
       }
 
-    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
+    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined' && vals !== window && vals !== document) {
       copy = {};
       for (var key in vals) {
         val = vals[key];
