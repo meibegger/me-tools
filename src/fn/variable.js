@@ -44,7 +44,7 @@
           : val);
       }
 
-    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined') {
+    } else if (vals && typeof(vals) === 'object' && typeof(vals.tagName) === 'undefined' && vals !== window && vals !== document) {
       copy = {};
       for (var key in vals) {
         val = vals[key];
