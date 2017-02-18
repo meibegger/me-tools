@@ -174,8 +174,9 @@
    * @param element DOM-element
    * @param attributeName string
    * @param values mixed; string or array of strings
+   * @param keepEmptyAttribute bool
    */
-  function removeAttributeValues(element, attributeName, values) {
+  function removeAttributeValues(element, attributeName, values, keepEmptyAttribute) {
     var attributeVal = element.getAttribute(attributeName);
     if (attributeVal) {
       var
@@ -187,7 +188,7 @@
         expStart + values + expEnd, 'g'),
         '');
 
-      if (attributeVal) {
+      if (keepEmptyAttribute || attributeVal) {
         element.setAttribute(attributeName, attributeVal);
       } else {
         element.removeAttribute(attributeName);

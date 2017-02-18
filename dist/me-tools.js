@@ -1,5 +1,5 @@
 /**
- * @license me-tools 2.0.1 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 2.0.2 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
@@ -303,8 +303,9 @@
    * @param element DOM-element
    * @param attributeName string
    * @param values mixed; string or array of strings
+   * @param keepEmptyAttribute bool
    */
-  function removeAttributeValues(element, attributeName, values) {
+  function removeAttributeValues(element, attributeName, values, keepEmptyAttribute) {
     var attributeVal = element.getAttribute(attributeName);
     if (attributeVal) {
       var
@@ -316,7 +317,7 @@
         expStart + values + expEnd, 'g'),
         '');
 
-      if (attributeVal) {
+      if (keepEmptyAttribute || attributeVal) {
         element.setAttribute(attributeName, attributeVal);
       } else {
         element.removeAttribute(attributeName);
