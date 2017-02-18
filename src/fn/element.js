@@ -169,7 +169,7 @@
   /**
    * Remove one or more values from an attribute.
    *
-   * removeAttributeValues(element, attributeName, values)
+   * removeAttributeValues(element, attributeName, values, keepEmptyAttribute)
    *
    * @param element DOM-element
    * @param attributeName string
@@ -196,6 +196,28 @@
     }
   }
 
+  /**
+   * Checks if an attribute has a value (word).
+   *
+   * hasAttributeValue(element, attributeName, value)
+   *
+   * @param element DOM-element
+   * @param attributeName string
+   * @param value string
+   * @returns {boolean}
+   */
+  function hasAttributeValue(element, attributeName, value) {
+    var attributeVal = element.getAttribute(attributeName);
+    if (attributeVal) {
+      var
+        expStart = '((^| )',
+        expEnd = '(?= |$))';
+
+      return !!attributeVal.match(new RegExp(expStart + value + expEnd, 'g'));
+    }
+    return false;
+  }
+
   /*
    ---------------
    api
@@ -208,7 +230,8 @@
     getAncestors: getAncestors,
     isParent: isParent,
     addAttributeValues: addAttributeValues,
-    removeAttributeValues: removeAttributeValues
+    removeAttributeValues: removeAttributeValues,
+    hasAttributeValue: hasAttributeValue
   };
 
 }));
