@@ -1,15 +1,12 @@
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
+  if(typeof exports === 'object' && typeof module === 'object') {
+    module.exports = factory(require('./variable'));
+  } else if (typeof define === 'function' && define.amd) {
     define('meTools.fn.event', [
       'meTools.fn.variable'
     ], factory);
   } else if(typeof exports === 'object') {
-    var fnVariable = require('./variable');
-    if (typeof module === 'object') {
-      module.exports = factory(fnVariable);
-    } else {
-      exports['meTools.fn.event'] = factory(fnVariable);
-    }
+    exports['meTools.fn.event'] = factory(require('./variable'));
   } else {
     root.meTools = root.meTools || {};
     root.meTools.fn = root.meTools.fn || {};
