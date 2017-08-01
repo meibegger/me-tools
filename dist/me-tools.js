@@ -1,5 +1,5 @@
 /**
- * @license me-tools 3.0.1 Copyright (c) Mandana Eibegger <scripts@schoener.at>
+ * @license me-tools 3.0.2 Copyright (c) Mandana Eibegger <scripts@schoener.at>
  * Available via the MIT license.
  * see: https://github.com/meibegger/me-tools for details
  */
@@ -519,17 +519,14 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
+  if(typeof exports === 'object' && typeof module === 'object') {
+    module.exports = factory(require('./variable'));
+  } else if (typeof define === 'function' && define.amd) {
     define('meTools.fn.event', [
       'meTools.fn.variable'
     ], factory);
   } else if(typeof exports === 'object') {
-    var fnVariable = require('./variable');
-    if (typeof module === 'object') {
-      module.exports = factory(fnVariable);
-    } else {
-      exports['meTools.fn.event'] = factory(fnVariable);
-    }
+    exports['meTools.fn.event'] = factory(require('./variable'));
   } else {
     root.meTools = root.meTools || {};
     root.meTools.fn = root.meTools.fn || {};
@@ -761,22 +758,17 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
+  if(typeof exports === 'object' && typeof module === 'object') {
+    module.exports = factory(require('./fn/variable'), require('./fn/element'), require('./fn/event'));
+
+  } else if (typeof define === 'function' && define.amd) {
     define([
       'meTools.fn.variable',
       'meTools.fn.element',
       'meTools.fn.event'
     ], factory);
   } else if(typeof exports === 'object') {
-    var
-      fnVariable = require('./fn/variable'),
-      fnElement = require('./fn/element'),
-      fnEvent = require('./fn/event');
-    if (typeof module === 'object') {
-      module.exports = factory(fnVariable, fnElement, fnEvent);
-    } else {
-      exports.meTools = factory(fnVariable, fnElement, fnEvent);
-    }
+    exports.meTools = factory(require('./fn/variable'), require('./fn/element'), require('./fn/event'));
   } else {
     var meTools = root.meTools;
     root.meTools = factory(meTools.fn.variable, meTools.fn.element, meTools.fn.event);
